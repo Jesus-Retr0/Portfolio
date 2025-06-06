@@ -1,21 +1,21 @@
 [
     {
-        "title": "Project A",
-        "description": "A brief description of Project A.",
-        "url": "github.com/user/project-a"
+        "title": "Password Generator Vault",
+        "description": "A simple, secure, and offline password manager written in Go. Generate strong passwords and store them in an encrypted vault file on your computer. No internet required—your secrets stay private.",
+        "url": "https://github.com/Jesus-Retr0/Password-Generator-Vault"
     },
     {
-        "title": "Project B",
-        "description": "A brief description of Project B.",
-        "url": "github.com/user/project-b"
+        "title": "Markdown based Journal App",
+        "description": "A clean, journal app built with Electron and Javascript. Write and save journal entries in Markdown format - all stored as simple '.md' files on your machine.",
+        "url": "https://github.com/Jesus-Retr0/Markdown-based-Journal-App"
     },
     {
-        "title": "Project C",
-        "description": "A brief description of Project C.",
-        "url": "github.com/user/project-c"
+        "title": "Simple Home Inventory Tracker",
+        "description": "A simple PHP & MySQL web application to help you manage and track your home inventory.",
+        "url": "https://github.com/Jesus-Retr0/Simple-Home-Inventory-Tracker"
     },
     {
-        "title": "Project D",
-        "description": "A brief description of Project D."
+        "title": "Programming Create Database & APIs",
+        "description": "This project provides a foundational setup for creating and managing websites for clients, leveraging the Laravel framework and MySQL database. It’s designed to help developers quickly get started on client projects, with a streamlined, database-integrated setup."
     }
 ]

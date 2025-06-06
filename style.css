@@ -222,3 +222,50 @@ main hr {
     border: none;
     border-top: 1.5px solid #232b39;
 }
+/* Experience Section Styles */
+#experience {
+    margin: 2em 0;
+}
+
+.experience-item {
+    background: #232b39;
+    border-left: 4px solid #00bcd4;
+    padding: 1em 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.experience-item h3 {
+    margin: 0 0 0.2em 0;
+    color: #007b8a;
+}
+
+.experience-item h4 {
+    margin: 0 0 0.2em 0;
+    font-weight: normal;
+    color: #888;
+}
+
+.experience-item span {
+    display: block;
+    font-size: 0.95em;
+    color: #888;
+    margin-bottom: 0.5em;
+}
+
+.experience-item ul {
+    margin: 0.5em 0 0 1em;
+    padding: 0;
+    list-style: disc inside;
+}
+
+.experience-item li {
+    margin-bottom: 0.3em;
+}
+.experience-item:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 6px 16px #0005;
+    background: #212936;
+}

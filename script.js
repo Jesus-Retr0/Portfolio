@@ -1,19 +1,47 @@
-console.log("Hey! Welcome to my portfolio!")
-
-fetch('projects.json')
-  .then(response => response.json())
-  .then(projects => {
-    const container = document.getElementById('projects-container');
-    projects.forEach(project => {
-      const article = document.createElement('article');
-      article.innerHTML = `
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        ${project.url ? `<a href="${project.url}" target="_blank">View on GitHub</a>` : ''}
-      `;
-      container.appendChild(article);
+// Render Experience Section
+function renderExperience(experiences) {
+    const container = document.getElementById('experience-container');
+    if (!container) return;
+    container.innerHTML = '';
+    experiences.forEach(exp => {
+        const div = document.createElement('div');
+        div.className = 'experience-item';
+        div.innerHTML = `
+            <h3>${exp.title}</h3>
+            <a href="${exp.companyUrl}">${exp.company}</a>
+            <span>${exp.period}</span>
+            <ul>
+                ${exp.details.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        `;
+        container.appendChild(div);
     });
-  })
-  .catch(error => {
-    console.error('Error loading projects:', error);
-  });
+}
+
+// Render Projects Section
+function renderProjects(projects) {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+    container.innerHTML = '';
+    projects.forEach(proj => {
+        const article = document.createElement('article');
+        article.className = 'project-item';
+        article.innerHTML = `
+            <h3>${proj.title}</h3>
+            <p>${proj.description}</p>
+            ${proj.url ? `<a href="https://${proj.url}" target="_blank">View Project</a>` : ''}
+        `;
+        container.appendChild(article);
+    });
+}
+
+// Fetch and render both sections on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('experience.json')
+        .then(res => res.json())
+        .then(renderExperience);
+
+    fetch('projects.json')
+        .then(res => res.json())
+        .then(renderProjects);
+});
