@@ -13,5 +13,9 @@
         "title": "Project C",
         "description": "A brief description of Project C.",
         "url": "github.com/user/project-c"
+    },
+    {
+        "title": "Project D",
+        "description": "A brief description of Project D."
     }
 ]

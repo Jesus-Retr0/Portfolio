@@ -9,7 +9,7 @@ fetch('projects.json')
       article.innerHTML = `
         <h3>${project.title}</h3>
         <p>${project.description}</p>
-        <a href="${project.url}" target="_blank">View on GitHub</a>
+        ${project.url ? `<a href="${project.url}" target="_blank">View on GitHub</a>` : ''}
       `;
       container.appendChild(article);
     });

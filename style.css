@@ -90,19 +90,26 @@ nav a {
 p{
     align-items: left;
 }
-#contact p a {
+#skills .skills-badges a {
     display: inline-block;
-    margin: 0 8px;
+    margin: 0 8px 12px 0;
     border-radius: 8px;
     box-shadow: 0 2px 8px #0003;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     background: #232b39;
     padding: 8px 12px;
+    vertical-align: middle;
 }
-#contact p a:hover {
+#skills .skills-badges a:hover {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 6px 16px #0005;
     background: #212936;
+}
+#skills .skills-badges a img {
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
 }
 main {
     max-width: 900px;
@@ -115,7 +122,13 @@ section {
 html {
     scroll-behavior: smooth;
 }
-#skills p a {
+#about p {
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1.1em;
+    text-align: center;
+}
+#socials .socials a {
     display: inline-block;
     margin: 0 8px 12px 0;
     border-radius: 8px;
@@ -125,14 +138,87 @@ html {
     padding: 8px 12px;
     vertical-align: middle;
 }
-#skills p a:hover {
+#socials .socials a:hover {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 6px 16px #0005;
     background: #212936;
 }
-#about p {
-    margin: 0 auto;
-    line-height: 1.7;
-    font-size: 1.1em;
+#socials .socials a img {
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
+}
+/* Contact Form Styles */
+#contact {
+    max-width: 500px;
+    margin: 48px auto;
+    background: #232b39;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px #0004;
+    padding: 32px 24px;
     text-align: center;
+}
+
+#contact h2 {
+    margin-top: 0;
+    color: #e3e3e3;
+    letter-spacing: 1px;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#contact label {
+    text-align: left;
+    color: #e3e3e3;
+    font-size: 1em;
+    margin-bottom: 4px;
+}
+
+#contact input[type="email"],
+#contact textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #181c24;
+    color: #e3e3e3;
+    font-size: 1em;
+    margin-top: 6px;
+    box-sizing: border-box;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+#contact input[type="email"]:focus,
+#contact textarea:focus {
+    background: #212936;
+    outline: 2px solid #00bcd4;
+}
+
+#contact button[type="submit"] {
+    background: linear-gradient(90deg, #2196f3 0%, #00bcd4 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#contact button[type="submit"]:hover {
+    background: linear-gradient(90deg, #00bcd4 0%, #2196f3 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+main hr {
+    max-width: 900px;
+    margin: 40px auto;
+    border: none;
+    border-top: 1.5px solid #232b39;
 }
