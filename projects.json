@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Project A",
+        "description": "A brief description of Project A.",
+        "url": "github.com/user/project-a"
+    },
+    {
+        "title": "Project B",
+        "description": "A brief description of Project B.",
+        "url": "github.com/user/project-b"
+    },
+    {
+        "title": "Project C",
+        "description": "A brief description of Project C.",
+        "url": "github.com/user/project-c"
+    }
+]
