@@ -29,7 +29,7 @@ function renderProjects(projects) {
         article.innerHTML = `
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
-            ${proj.url ? `<a href="https://${proj.url}" target="_blank">View Project</a>` : ''}
+            ${proj.url ? `<a href="${proj.url}" target="_blank">View Project</a>` : ''}
         `;
         container.appendChild(article);
     });
