@@ -180,6 +180,7 @@ html {
 }
 
 #contact input[type="email"],
+#contact input[type="text"],
 #contact textarea {
     width: 100%;
     padding: 10px 12px;
@@ -194,6 +195,7 @@ html {
 }
 
 #contact input[type="email"]:focus,
+#contact input[type="text"]:focus,
 #contact textarea:focus {
     background: #212936;
     outline: 2px solid #00bcd4;
