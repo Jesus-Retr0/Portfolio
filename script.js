@@ -1,3 +1,5 @@
+console.log('HI!!!! So you know how to check console logs! :)');
+
 // Render Experience Section
 function renderExperience(experiences) {
     const container = document.getElementById('experience-container');
@@ -8,7 +10,7 @@ function renderExperience(experiences) {
         div.className = 'experience-item';
         div.innerHTML = `
             <h3>${exp.title}</h3>
-            <a href="${exp.companyUrl}">${exp.company}</a>
+            <a target="_blank" href="${exp.companyUrl}">${exp.company}</a>
             <span>${exp.period}</span>
             <ul>
                 ${exp.details.map(item => `<li>${item}</li>`).join('')}
@@ -35,6 +37,12 @@ function renderProjects(projects) {
     });
 }
 
+//Get year from date
+function getCopyRightYear() {
+    const date = new Date();
+    return date.getFullYear();
+}
+
 // Fetch and render both sections on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     fetch('experience.json')
@@ -44,4 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('projects.json')
         .then(res => res.json())
         .then(renderProjects);
+    const footer = document.querySelector('footer p');
+    if (footer) {
+        footer.textContent = `© ${getCopyRightYear()} Jesus De La Paz. All rights reserved.`;
+    }
 });
