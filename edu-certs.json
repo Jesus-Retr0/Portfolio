@@ -1,0 +1,27 @@
+[{"Education":[{
+    "name": "Bachelor of Science in Computer Science",
+    "year": "2021 - Present",
+    "details": "Focused on software engineering, data structures, and algorithms."
+}], 
+   "Certifications": [{
+    "name": "Techno Inventors",
+    "year": "",
+    "details": "A robotics and automation course that taught me how to build and program robots using Arduino"
+},{
+    "name": "Cybercamp",
+    "year": "2019",
+    "details": "A cybersecurity bootcamp that introduced me to ethical hacking, network security, and penetration testing."
+},{ 
+    "name": "Compuchic@s",
+    "year": "2020",
+    "details": "A basic summer course on computer science fundamentals, and programming."
+},{
+    "name": "Cybersecurity Introduction course",
+    "year": "2023",
+    "details": "A summer course about that taught me the basics of Cybersecurity to get started."
+},{
+    "name":"Supervised Machine Learning: Regression and Classification",
+    "year": "2025",
+    "details":"A course i took on Coursera to learn the basics of Machine Learning. <a target=\"blank_\" href=\"https://coursera.org/verify/431K5N0LS033\">Validate Certificate</a>"
+}]
+}]

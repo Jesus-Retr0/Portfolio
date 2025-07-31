@@ -273,3 +273,54 @@ main hr {
     box-shadow: 0 6px 16px #0005;
     background: #212936;
 }
+
+/* Container layout (if needed) */
+#education-container,
+#certifications-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Reusable card style (like project cards) */
+.education-item,
+.certification-item {
+    background-color: #232b39; /* or your card bg color */
+    color: #f0f0f0;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.education-item:hover,
+.certification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Title and detail styling */
+.education-item h3,
+.certification-item h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.education-item span,
+.certification-item span {
+    font-size: 0.9rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.education-item p,
+.certification-item p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #d0d0d0;
+}

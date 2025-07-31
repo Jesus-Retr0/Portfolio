@@ -37,6 +37,46 @@ function renderProjects(projects) {
     });
 }
 
+// Render Education and Certifications Section
+function renderEducationCerts(data) {
+    const educationContainer = document.getElementById('education-container');
+    const certificationsContainer = document.getElementById('certifications-container');
+    
+    if (!educationContainer || !certificationsContainer) return;
+    educationContainer.innerHTML = '';
+    certificationsContainer.innerHTML = '';
+    
+    data.forEach(item => {
+        if (item.Education) {
+            item.Education.forEach(edu => {
+                const div = document.createElement('div');
+                div.className = 'education-item';
+                div.innerHTML = `
+                    <h3>${edu.name}</h3>
+                    <span>${edu.year}</span>
+                    <p>${edu.details}</p>
+                `;
+                educationContainer.appendChild(div);
+            }
+        );
+        }
+        if (item.Certifications) {
+            item.Certifications.forEach(cert => {
+                const div = document.createElement('div');
+                div.className = 'certification-item';
+                div.innerHTML = `
+                    <h3>${cert.name}</h3>
+                    <span>${cert.year}</span>
+                    <p>${cert.details}</p>
+                `;
+                certificationsContainer.appendChild(div);
+            }
+        );
+        }
+    });
+}
+
+
 //Get year from date
 function getCopyRightYear() {
     const date = new Date();
@@ -52,6 +92,19 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('projects.json')
         .then(res => res.json())
         .then(renderProjects);
+    
+    fetch('edu-certs.json')
+        .then(res => res.json())
+        .then(data => {
+            if (Array.isArray(data) && data.length > 0) {
+                renderEducationCerts(data);
+            } else {
+                console.error('Invalid data format for education and certifications');
+            }
+        })
+        .catch(err => console.error('Error fetching education and certifications:', err));
+
+    // Update footer with current year
     const footer = document.querySelector('footer p');
     if (footer) {
         footer.textContent = `© ${getCopyRightYear()} Jesus De La Paz. All rights reserved.`;
