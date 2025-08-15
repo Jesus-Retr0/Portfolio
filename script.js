@@ -73,7 +73,7 @@ function renderEducationCerts(data) {
                 div.className = 'education-item';
                 div.innerHTML = `
                     <h3>${edu.name}</h3>
-                    <span>${edu.year}</span>
+                    <span>${edu.year} | ${timeBetweenDates(edu.startDate, edu.endDate)}</span>
                     <p>${edu.details}</p>
                 `;
                 educationContainer.appendChild(div);
