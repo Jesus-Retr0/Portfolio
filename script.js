@@ -1,5 +1,25 @@
 console.log('HI!!!! So you know how to check console logs! :)');
 
+function timeBetweenDates(startDate, endDate) {
+    const start = new Date(startDate);
+    if (endDate === 'Present') {
+        endDate = new Date(); // Use current date if 'Present'
+    }
+    else{
+        endDate = new Date(endDate);
+        if (isNaN(endDate.getTime())) {
+            console.error('Invalid end date:', endDate);
+            return 'Invalid date';
+        }
+    }
+    const end = new Date(endDate);
+    const diff = end - start; // Difference in milliseconds
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+    const years = Math.floor(days / 365);
+    const months = Math.floor((days % 365) / 30);
+    return `${years} years, ${months} months`;
+}
+
 // Render Experience Section
 function renderExperience(experiences) {
     const container = document.getElementById('experience-container');
@@ -11,7 +31,7 @@ function renderExperience(experiences) {
         div.innerHTML = `
             <h3>${exp.title}</h3>
             <a target="_blank" href="${exp.companyUrl}">${exp.company}</a>
-            <span>${exp.period}</span>
+            <span>${exp.period} | ${timeBetweenDates(exp.startDate, exp.endDate)}</span>
             <ul>
                 ${exp.details.map(item => `<li>${item}</li>`).join('')}
             </ul>

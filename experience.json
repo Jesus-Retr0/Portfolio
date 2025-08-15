@@ -4,6 +4,8 @@
         "company": "W@W PR | PRComputer",
         "companyUrl": "https://wawpr.com/",
         "period": "Sep 2024 – May 2025",
+        "startDate": "2024-09-01",
+        "endDate": "2025-05-31",
         "details": [
             "Developed web applications in PHP and JavaScript.",
             "Used frameworks like Bootstrap, Laravel and Codeigniter.",
@@ -15,6 +17,8 @@
         "company": "W@W PR | PRComputer",
         "companyUrl": "https://wawpr.com/",
         "period": "Jun 2025 – Present",
+        "startDate": "2025-06-01",
+        "endDate": "Present",
         "details": [
             "Developing web applications in PHP and JavaScript.",
             "Using frameworks like Bootstrap, Laravel and Codeigniter.",
