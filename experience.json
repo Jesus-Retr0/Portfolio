@@ -1,28 +1,140 @@
-[
+{
+  "Work": [
     {
-        "title": "Developer Internship",
-        "company": "W@W PR | PRComputer",
-        "companyUrl": "https://wawpr.com/",
-        "period": "Sep 2024 – May 2025",
-        "startDate": "2024-09-01",
-        "endDate": "2025-05-31",
-        "details": [
-            "Developed web applications in PHP and JavaScript.",
-            "Used frameworks like Bootstrap, Laravel and Codeigniter.",
-            "Developed apps using Ionic Framework."
-        ]
+      "title": "Developer Internship",
+      "company": "W@W PR | PRComputer",
+      "companyUrl": "https://wawpr.com/",
+      "period": "Sep 2024 – May 2025",
+      "startDate": "2024-09-01",
+      "endDate": "2025-05-31",
+      "details": [
+        "Developed web applications in PHP and JavaScript.",
+        "Used frameworks like Bootstrap, Laravel and Codeigniter.",
+        "Developed apps using Ionic Framework."
+      ]
     },
     {
-        "title": "Jr. Software Developer",
-        "company": "W@W PR | PRComputer",
-        "companyUrl": "https://wawpr.com/",
-        "period": "Jun 2025 – Present",
-        "startDate": "2025-06-01",
-        "endDate": "Present",
-        "details": [
-            "Developing web applications in PHP and JavaScript.",
-            "Using frameworks like Bootstrap, Laravel and Codeigniter.",
-            "Developing apps using Ionic Framework."
-        ]
+      "title": "Jr. Software Developer",
+      "company": "W@W PR | PRComputer",
+      "companyUrl": "https://wawpr.com/",
+      "period": "Jun 2025 – Present",
+      "startDate": "2025-06-01",
+      "endDate": "Present",
+      "details": [
+        "Developing web applications in PHP and JavaScript.",
+        "Using frameworks like Bootstrap, Laravel and Codeigniter.",
+        "Developing apps using Ionic Framework."
+      ]
     }
-]
+  ],
+  "Skills": [
+    {
+      "Languages & Tools": [
+        {
+          "name": "Python",
+          "url": "https://www.python.org/",
+          "img": "https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+        },
+        {
+          "name": "Java",
+          "url": "https://www.java.com/",
+          "img": "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"
+        },
+        {
+          "name": "JavaScript",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+          "img": "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"
+        },
+        {
+          "name": "PHP",
+          "url": "https://www.php.net/",
+          "img": "https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"
+        },
+        {
+          "name": "HTML",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+          "img": "https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
+        },
+        {
+          "name": "CSS",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+          "img": "https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
+        },
+        {
+          "name": "Go",
+          "url": "https://golang.org/",
+          "img": "https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white"
+        },
+        {
+          "name": "F#",
+          "url": "https://fsharp.org/",
+          "img": "https://img.shields.io/badge/F%23-378BBA?style=for-the-badge&logo=fsharp&logoColor=white"
+        },
+        {
+          "name": "C#",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "img": "https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white"
+        },
+        {
+          "name": "SQL",
+          "url": "https://www.mysql.com/",
+          "img": "https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"
+        }
+      ]
+    },
+    {
+      "Technologies/Frameworks": [
+        {
+          "name": "Git",
+          "url": "https://git-scm.com/",
+          "img": "https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/",
+          "img": "https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"
+        },
+        {
+          "name": "Laravel",
+          "url": "https://laravel.com/",
+          "img": "https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"
+        },
+        {
+          "name": "Linux",
+          "url": "https://www.linux.org/",
+          "img": "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"
+        },
+        {
+          "name": "Windows",
+          "url": "https://www.microsoft.com/en-us/windows",
+          "img": "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"
+        },
+        {
+          "name": "CodeIgniter",
+          "url": "https://codeigniter.com/",
+          "img": "https://img.shields.io/badge/CodeIgniter-EF4223?style=for-the-badge&logo=codeigniter&logoColor=white"
+        },
+        {
+          "name": "Bitbucket",
+          "url": "https://bitbucket.org/",
+          "img": "https://img.shields.io/badge/Bitbucket-0052CC?style=for-the-badge&logo=bitbucket&logoColor=white"
+        },
+        {
+          "name": "Bootstrap",
+          "url": "https://getbootstrap.com/",
+          "img": "https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"
+        },
+        {
+          "name": "Node.js",
+          "url": "https://nodejs.org/",
+          "img": "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"
+        },
+        {
+          "name": "Ionic",
+          "url": "https://ionicframework.com/",
+          "img": "https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white"
+        }
+      ]
+    }
+  ]
+}

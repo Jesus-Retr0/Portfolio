@@ -244,6 +244,24 @@ html {
     background: linear-gradient(90deg, #00bcd4 0%, #2196f3 100%);
     transform: translateY(-2px) scale(1.03);
 }
+
+button{
+    background: linear-gradient(90deg, #2196f3 0%, #00bcd4 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1.0em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s, transform 0.2s;
+}
+button:hover {
+    background: linear-gradient(90deg, #00bcd4 0%, #2196f3 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+
 main hr {
     max-width: 900px;
     margin: 40px auto;

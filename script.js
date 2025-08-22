@@ -96,6 +96,37 @@ function renderEducationCerts(data) {
     });
 }
 
+function renderSkills(skillsData) {
+    const container = document.getElementById('skills-container');
+    container.className = 'skills-badges';
+    if (!container) return;
+    container.innerHTML = '';
+
+    skillsData.forEach(skillCategory => {
+        for (const category in skillCategory) {
+            const section = document.createElement('div');
+            section.className = 'skill-category';
+            const title = document.createElement('h3');
+            title.textContent = category;
+            section.appendChild(title);
+
+            const skillList = document.createElement('div');
+
+            skillCategory[category].forEach(skill => {
+                const skillDiv = document.createElement('a');
+                skillDiv.href = skill.url;
+                skillDiv.target = '_blank';
+                skillDiv.innerHTML = `
+                        <img src="${skill.img}" alt="${skill.name}" />
+                `;
+                skillList.appendChild(skillDiv);
+            });
+
+            section.appendChild(skillList);
+            container.appendChild(section);
+        }
+    });
+}
 
 //Get year from date
 function getCopyRightYear() {
@@ -103,11 +134,191 @@ function getCopyRightYear() {
     return date.getFullYear();
 }
 
+// Helper for wrapping text and handling page breaks
+function addWrappedText(doc, text, x, y, maxWidth, lineHeight) {
+    const lines = doc.splitTextToSize(text, maxWidth);
+    const pageHeight = doc.internal.pageSize.getHeight();
+    lines.forEach(line => {
+        if (y > pageHeight - 15) {
+            doc.addPage();
+            y = 15;
+        }
+        doc.text(line, x, y);
+        y += lineHeight;
+    });
+    return y;
+}
+
+document.getElementById('download-resume').addEventListener('click', async function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Fetch JSON data
+    const [experienceData, projects, eduCerts] = await Promise.all([
+        fetch('experience.json').then(res => res.json()),
+        fetch('projects.json').then(res => res.json()),
+        fetch('edu-certs.json').then(res => res.json())
+    ]);
+    const experience = experienceData.Work;
+    const skills = experienceData.Skills;
+
+    let y = 18;
+    const margin = 15;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const contentWidth = pageWidth - margin * 2;
+    const lineHeight = 7;
+
+    // Centered, colored title
+    doc.setFontSize(22);
+    doc.setTextColor(13, 71, 161); // Darker Blue
+    const title = "Jesus De La Paz - Resume";
+    const textWidth = doc.getTextWidth(title);
+    doc.text(title, (pageWidth - textWidth) / 2, y);
+    y += 6;
+    doc.setDrawColor(13, 71, 161); // Darker Blue
+    doc.setLineWidth(1.2);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    // Section: Education
+    y += 4;
+    doc.setFontSize(15);
+    doc.setTextColor(33, 150, 243); // Blue
+    doc.text("EDUCATION", margin, y);
+    y += 3;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+
+    if (eduCerts[0] && eduCerts[0].Education) {
+        eduCerts[0].Education.forEach(edu => {
+            y = addWrappedText(doc, `${edu.name} (${edu.year})`, margin + 2, y, contentWidth - 4, lineHeight);
+            y = addWrappedText(doc, edu.details, margin + 8, y, contentWidth - 8, lineHeight);
+            y += 2;
+        });
+    }
+
+    // Section: Certifications
+    y += 4;
+    doc.setFontSize(15);
+    doc.setTextColor(33, 150, 243); // Blue
+    doc.text("CERTIFICATIONS", margin, y);
+    y += 3;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+
+    if (eduCerts[0] && eduCerts[0].Certifications) {
+        eduCerts[0].Certifications.forEach(cert => {
+            y = addWrappedText(doc, `${cert.name} ${cert.year ? '(' + cert.year + ')' : ''}`, margin + 2, y, contentWidth - 4, lineHeight);
+
+            // Detect and render clickable link if present in details
+            const linkMatch = cert.details.match(/<a[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
+            if (linkMatch) {
+                // Text before the link
+                const beforeLink = cert.details.split(linkMatch[0])[0].replace(/<[^>]*>?/gm, '');
+                if (beforeLink.trim()) {
+                    y = addWrappedText(doc, beforeLink.trim(), margin + 8, y, contentWidth - 8, lineHeight);
+                }
+                // The link itself
+                doc.setTextColor(33, 150, 243); // Blue for link
+                doc.textWithLink(linkMatch[2], margin + 8, y, { url: linkMatch[1] });
+                doc.setTextColor(0,0,0); // Reset color
+                y += lineHeight;
+            } else {
+                // No link, just plain text
+                y = addWrappedText(doc, cert.details.replace(/<[^>]*>?/gm, ''), margin + 8, y, contentWidth - 8, lineHeight);
+            }
+            y += 2;
+        });
+    }
+
+    // Section: Experience
+    y += 4;
+    doc.setFontSize(15);
+    doc.setTextColor(33, 150, 243); // Blue
+    doc.text("EXPERIENCE", margin, y);
+    y += 3;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+
+    experience.forEach(exp => {
+        y = addWrappedText(doc, `${exp.title} at ${exp.company} (${exp.period})`, margin + 2, y, contentWidth - 4, lineHeight);
+        exp.details.forEach(detail => {
+            y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
+        });
+        y += 2;
+    });
+
+    // Section: Projects
+    y += 4;
+    doc.setFontSize(15);
+    doc.setTextColor(33, 150, 243); // Blue
+    doc.text("PROJECTS", margin, y);
+    y += 3;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+
+    projects.forEach(proj => {
+        y = addWrappedText(doc, `${proj.title}`, margin + 2, y, contentWidth - 4, lineHeight);
+        y = addWrappedText(doc, proj.description, margin + 8, y, contentWidth - 8, lineHeight);
+        y += 2;
+    });
+
+     // Section: Skills
+    doc.setFontSize(15);
+    doc.setTextColor(33, 150, 243); // Blue
+    doc.text("SKILLS", margin, y);
+    y += 3;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 5;
+    doc.setFontSize(11);
+    doc.setTextColor(0,0,0);
+
+    // List skills by name
+    if (skills && Array.isArray(skills)) {
+        skills.forEach(skillCategory => {
+            for (const category in skillCategory) {
+                const skillNames = skillCategory[category]
+                    .map(skill => skill.name ? skill.name : '')
+                    .filter(name => name)
+                    .join(', ');
+                if (skillNames) {
+                    y = addWrappedText(doc, `${category}: ${skillNames}`, margin + 2, y, contentWidth - 4, lineHeight);
+                    y += 1;
+                }
+            }
+        });
+    }
+
+    doc.save("Resume - Jesus De La Paz.pdf");
+});
+
 // Fetch and render both sections on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     fetch('experience.json')
         .then(res => res.json())
-        .then(renderExperience);
+        .then(data => renderExperience(data.Work));
+    
+    fetch('experience.json')
+        .then(res => res.json())
+        .then(data => renderSkills(data.Skills));
 
     fetch('projects.json')
         .then(res => res.json())
