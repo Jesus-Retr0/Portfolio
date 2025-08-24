@@ -195,7 +195,16 @@ document.getElementById('download-resume').addEventListener('click', async funct
 
     if (eduCerts[0] && eduCerts[0].Education) {
         eduCerts[0].Education.forEach(edu => {
-            y = addWrappedText(doc, `${edu.name} (${edu.year})`, margin + 2, y, contentWidth - 4, lineHeight);
+            // Left: edu.name, Right: edu.year
+            doc.setFontSize(11);
+            doc.setTextColor(0,0,0);
+            const nameX = margin + 2;
+            const yearText = `${edu.year}`;
+            const yearWidth = doc.getTextWidth(yearText);
+            const yearX = pageWidth - margin - yearWidth;
+            doc.text(edu.name, nameX, y);
+            doc.text(yearText, yearX, y);
+            y += lineHeight;
             y = addWrappedText(doc, edu.details, margin + 8, y, contentWidth - 8, lineHeight);
             y += 2;
         });
@@ -216,7 +225,16 @@ document.getElementById('download-resume').addEventListener('click', async funct
 
     if (eduCerts[0] && eduCerts[0].Certifications) {
         eduCerts[0].Certifications.forEach(cert => {
-            y = addWrappedText(doc, `${cert.name} ${cert.year ? '(' + cert.year + ')' : ''}`, margin + 2, y, contentWidth - 4, lineHeight);
+            // Left: cert.name, Right: cert.year (far right)
+            const certNameX = margin + 2;
+            const certYearText = cert.year ? `${cert.year}` : '';
+            const certYearWidth = doc.getTextWidth(certYearText);
+            const certYearX = pageWidth - margin - certYearWidth;
+            doc.text(cert.name, certNameX, y);
+            if (certYearText) {
+                doc.text(certYearText, certYearX, y);
+            }
+            y += lineHeight;
 
             // Detect and render clickable link if present in details
             const linkMatch = cert.details.match(/<a[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
@@ -253,7 +271,14 @@ document.getElementById('download-resume').addEventListener('click', async funct
     doc.setTextColor(0,0,0);
 
     experience.forEach(exp => {
-        y = addWrappedText(doc, `${exp.title} at ${exp.company} (${exp.period})`, margin + 2, y, contentWidth - 4, lineHeight);
+        // Left: exp.title at exp.company, Right: exp.period (no parentheses)
+        const expText = `${exp.title} at ${exp.company}`;
+        const periodText = exp.period;
+        const periodWidth = doc.getTextWidth(periodText);
+        const periodX = pageWidth - margin - periodWidth;
+        doc.text(expText, margin + 2, y);
+        doc.text(periodText, periodX, y);
+        y += lineHeight;
         exp.details.forEach(detail => {
             y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
         });
