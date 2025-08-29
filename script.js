@@ -21,24 +21,60 @@ function timeBetweenDates(startDate, endDate) {
 }
 
 // Render Experience Section
-function renderExperience(experiences) {
+function renderExperience(experienceData) {
     const container = document.getElementById('experience-container');
     if (!container) return;
     container.innerHTML = '';
-    experiences.forEach(exp => {
-        const div = document.createElement('div');
-        div.className = 'experience-item';
-        div.innerHTML = `
-            <h3>${exp.title}</h3>
-            <a target="_blank" href="${exp.companyUrl}">${exp.company}</a>
-            <span>${exp.period} | ${timeBetweenDates(exp.startDate, exp.endDate)}</span>
-            <ul>
-                ${exp.details.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-        `;
-        container.appendChild(div);
+
+    experienceData.forEach(companyBlock => {
+        // Create a container div for the company block
+        const companyContainer = document.createElement('div');
+        companyContainer.className = 'company-container';
+
+        // Company link as the title (small and styled)
+        const companyUrl = companyBlock.companyUrl || '#';
+        const companyLink = document.createElement('a');
+        companyLink.href = companyUrl;
+        companyLink.target = '_blank';
+        companyLink.textContent = companyBlock.company;
+        companyLink.className = 'company-link-title';
+        companyContainer.appendChild(companyLink);
+
+        //Add period and timeBetweenDates next to company name
+        const periodSpan = document.createElement('span');
+        periodSpan.className = 'period';
+        const periodText = companyBlock.Period ? companyBlock.Period : '';
+        const timeText = companyBlock.startDate && (companyBlock.endDate || companyBlock.endDate === 'Present') ? ` | ${timeBetweenDates(companyBlock.startDate, companyBlock.endDate)}` : '';
+        periodSpan.textContent = `${periodText}${timeText}`;
+        companyContainer.appendChild(periodSpan);
+
+
+        // Container for all job experiences within the company
+        const jobsContainer = document.createElement('div');
+        jobsContainer.className = 'jobs-container';
+
+        companyBlock.data.forEach(exp => {
+            const expDiv = document.createElement('div');
+            expDiv.className = 'experience-item';
+
+            expDiv.innerHTML = `
+                <h3>${exp.title}</h3>
+                <span class="period">${exp.period} | ${timeBetweenDates(exp.startDate, exp.endDate)}</span>
+                <ul>
+                    ${exp.details.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+            `;
+
+            jobsContainer.appendChild(expDiv);
+        });
+
+        companyContainer.appendChild(jobsContainer);
+        container.appendChild(companyContainer);
     });
 }
+
+
+
 
 // Render Projects Section
 function renderProjects(projects) {
@@ -159,7 +195,7 @@ document.getElementById('download-resume').addEventListener('click', async funct
         fetch('projects.json').then(res => res.json()),
         fetch('edu-certs.json').then(res => res.json())
     ]);
-    const experience = experienceData.Work;
+    const work = experienceData.Work;      // Array of company objects with data[]
     const skills = experienceData.Skills;
 
     let y = 18;
@@ -168,14 +204,14 @@ document.getElementById('download-resume').addEventListener('click', async funct
     const contentWidth = pageWidth - margin * 2;
     const lineHeight = 7;
 
-    // Centered, colored title
+    // Title
     doc.setFontSize(22);
-    doc.setTextColor(13, 71, 161); // Darker Blue
+    doc.setTextColor(13, 71, 161); // Dark Blue
     const title = "Jesus De La Paz - Resume";
     const textWidth = doc.getTextWidth(title);
     doc.text(title, (pageWidth - textWidth) / 2, y);
     y += 6;
-    doc.setDrawColor(13, 71, 161); // Darker Blue
+    doc.setDrawColor(13, 71, 161);
     doc.setLineWidth(1.2);
     doc.line(margin, y, pageWidth - margin, y);
     y += 10;
@@ -195,9 +231,6 @@ document.getElementById('download-resume').addEventListener('click', async funct
 
     if (eduCerts[0] && eduCerts[0].Education) {
         eduCerts[0].Education.forEach(edu => {
-            // Left: edu.name, Right: edu.year
-            doc.setFontSize(11);
-            doc.setTextColor(0,0,0);
             const nameX = margin + 2;
             const yearText = `${edu.year}`;
             const yearWidth = doc.getTextWidth(yearText);
@@ -213,7 +246,7 @@ document.getElementById('download-resume').addEventListener('click', async funct
     // Section: Certifications
     y += 4;
     doc.setFontSize(15);
-    doc.setTextColor(33, 150, 243); // Blue
+    doc.setTextColor(33, 150, 243);
     doc.text("CERTIFICATIONS", margin, y);
     y += 3;
     doc.setDrawColor(200, 200, 200);
@@ -225,7 +258,6 @@ document.getElementById('download-resume').addEventListener('click', async funct
 
     if (eduCerts[0] && eduCerts[0].Certifications) {
         eduCerts[0].Certifications.forEach(cert => {
-            // Left: cert.name, Right: cert.year (far right)
             const certNameX = margin + 2;
             const certYearText = cert.year ? `${cert.year}` : '';
             const certYearWidth = doc.getTextWidth(certYearText);
@@ -236,21 +268,18 @@ document.getElementById('download-resume').addEventListener('click', async funct
             }
             y += lineHeight;
 
-            // Detect and render clickable link if present in details
+            // Render clickable links if present
             const linkMatch = cert.details.match(/<a[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
             if (linkMatch) {
-                // Text before the link
                 const beforeLink = cert.details.split(linkMatch[0])[0].replace(/<[^>]*>?/gm, '');
                 if (beforeLink.trim()) {
                     y = addWrappedText(doc, beforeLink.trim(), margin + 8, y, contentWidth - 8, lineHeight);
                 }
-                // The link itself
-                doc.setTextColor(33, 150, 243); // Blue for link
+                doc.setTextColor(33, 150, 243);
                 doc.textWithLink(linkMatch[2], margin + 8, y, { url: linkMatch[1] });
-                doc.setTextColor(0,0,0); // Reset color
+                doc.setTextColor(0,0,0);
                 y += lineHeight;
             } else {
-                // No link, just plain text
                 y = addWrappedText(doc, cert.details.replace(/<[^>]*>?/gm, ''), margin + 8, y, contentWidth - 8, lineHeight);
             }
             y += 2;
@@ -260,7 +289,7 @@ document.getElementById('download-resume').addEventListener('click', async funct
     // Section: Experience
     y += 4;
     doc.setFontSize(15);
-    doc.setTextColor(33, 150, 243); // Blue
+    doc.setTextColor(33, 150, 243);
     doc.text("EXPERIENCE", margin, y);
     y += 3;
     doc.setDrawColor(200, 200, 200);
@@ -270,25 +299,28 @@ document.getElementById('download-resume').addEventListener('click', async funct
     doc.setFontSize(11);
     doc.setTextColor(0,0,0);
 
-    experience.forEach(exp => {
-        // Left: exp.title at exp.company, Right: exp.period (no parentheses)
-        const expText = `${exp.title} at ${exp.company}`;
-        const periodText = exp.period;
-        const periodWidth = doc.getTextWidth(periodText);
-        const periodX = pageWidth - margin - periodWidth;
-        doc.text(expText, margin + 2, y);
-        doc.text(periodText, periodX, y);
-        y += lineHeight;
-        exp.details.forEach(detail => {
-            y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
+    work.forEach(companyBlock => {
+        companyBlock.data.forEach(exp => {
+            const expText = `${exp.title} at ${companyBlock.company}`;
+            const periodText = exp.period;
+            const periodWidth = doc.getTextWidth(periodText);
+            const periodX = pageWidth - margin - periodWidth;
+
+            doc.text(expText, margin + 2, y);
+            doc.text(periodText, periodX, y);
+            y += lineHeight;
+
+            exp.details.forEach(detail => {
+                y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
+            });
+            y += 2;
         });
-        y += 2;
     });
 
     // Section: Projects
     y += 4;
     doc.setFontSize(15);
-    doc.setTextColor(33, 150, 243); // Blue
+    doc.setTextColor(33, 150, 243);
     doc.text("PROJECTS", margin, y);
     y += 3;
     doc.setDrawColor(200, 200, 200);
@@ -299,14 +331,14 @@ document.getElementById('download-resume').addEventListener('click', async funct
     doc.setTextColor(0,0,0);
 
     projects.forEach(proj => {
-        y = addWrappedText(doc, `${proj.title}`, margin + 2, y, contentWidth - 4, lineHeight);
+        y = addWrappedText(doc, proj.title, margin + 2, y, contentWidth - 4, lineHeight);
         y = addWrappedText(doc, proj.description, margin + 8, y, contentWidth - 8, lineHeight);
         y += 2;
     });
 
-     // Section: Skills
+    // Section: Skills
     doc.setFontSize(15);
-    doc.setTextColor(33, 150, 243); // Blue
+    doc.setTextColor(33, 150, 243);
     doc.text("SKILLS", margin, y);
     y += 3;
     doc.setDrawColor(200, 200, 200);
@@ -316,7 +348,6 @@ document.getElementById('download-resume').addEventListener('click', async funct
     doc.setFontSize(11);
     doc.setTextColor(0,0,0);
 
-    // List skills by name
     if (skills && Array.isArray(skills)) {
         skills.forEach(skillCategory => {
             for (const category in skillCategory) {
@@ -334,6 +365,7 @@ document.getElementById('download-resume').addEventListener('click', async funct
 
     doc.save("Resume - Jesus De La Paz.pdf");
 });
+
 
 // Fetch and render both sections on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {

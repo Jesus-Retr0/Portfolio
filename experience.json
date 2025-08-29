@@ -1,32 +1,38 @@
 {
   "Work": [
     {
-      "title": "Developer Internship",
       "company": "W@W PR | PRComputer",
-      "companyUrl": "https://wawpr.com/",
-      "period": "Sep 2024 – May 2025",
-      "startDate": "2024-09-01",
-      "endDate": "2025-05-31",
-      "details": [
-        "Developed web applications in PHP and JavaScript.",
-        "Used frameworks like Bootstrap, Laravel and Codeigniter.",
-        "Developed apps using Ionic Framework."
-      ]
-    },
-    {
-      "title": "Jr. Software Developer",
-      "company": "W@W PR | PRComputer",
-      "companyUrl": "https://wawpr.com/",
-      "period": "Jun 2025 – Present",
-      "startDate": "2025-06-01",
+      "companyUrl":"https://wawpr.com/",
+      "Period": "Sep 2024 – Present",
+      "startDate": "2024-09-10",
       "endDate": "Present",
-      "details": [
-        "Developing web applications in PHP and JavaScript.",
-        "Using frameworks like Bootstrap, Laravel and Codeigniter.",
-        "Developing apps using Ionic Framework."
+      "data": [
+        {
+          "title": "Developer Internship",
+          "period": "Sep 2024 – May 2025",
+          "startDate": "2024-09-10",
+          "endDate": "2025-05-31",
+          "details": [
+            "Developed web applications in PHP and JavaScript.",
+            "Used frameworks like Bootstrap, Laravel and Codeigniter.",
+            "Developed apps using Ionic Framework."
+          ]
+        },
+        {
+          "title": "Jr. Software Developer",
+          "period": "Jun 2025 – Present",
+          "startDate": "2025-06-01",
+          "endDate": "Present",
+          "details": [
+            "Developing web applications in PHP and JavaScript.",
+            "Using frameworks like Bootstrap, Laravel and Codeigniter.",
+            "Developing apps using Ionic Framework."
+          ]
+        }
       ]
     }
   ],
+
   "Skills": [
     {
       "Languages & Tools": [

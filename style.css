@@ -269,52 +269,109 @@ main hr {
     border-top: 1.5px solid #232b39;
 }
 /* Experience Section Styles */
-#experience {
-    margin: 2em 0;
+.experience-container {
+    margin: 2em auto;
+    max-width: 900px;
+    background: #232b39;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.432);
+    color: #ddd;
+    padding: 4em 0;
+    background-color: #1c2230;
+}
+
+.company-container {
+    margin-bottom: 3em;
+    padding: 1.5em 2em;
+    border-radius: 8px;
+    background-color: #1a1f2e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.company-name {
+    font-size: 3rem;
+    color: #00bcd4;
+    font-weight: 700;
+    margin-bottom: 1em;
+    padding-bottom: 0.3em;
+}
+
+.jobs-container {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.period{
+    display: block;
+    font-size: 1.1em;
+    color: #999;
+    margin-bottom: 0.7em;
 }
 
 .experience-item {
-    background: #232b39;
+    background: transparent;
     border-left: 4px solid #00bcd4;
-    padding: 1em 1.5em;
+    padding: 1.2em 1.5em;
     margin-bottom: 1.5em;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    color: #ddd;
+}
+
+.experience-item:hover {
+    background: #212936;
+    transform: translateY(-5px) scale(1.02);
 }
 
 .experience-item h3 {
     margin: 0 0 0.2em 0;
     color: #00bcd4;
+    font-weight: 600;
+    font-size: 1.25rem;
 }
 
 .experience-item h4 {
-    margin: 0 0 0.2em 0;
-    font-weight: normal;
-    color: #888;
+    margin: 0 0 0.3em 0;
+    font-weight: 400;
+    color: #aaa;
+    font-style: italic;
 }
 
 .experience-item span {
     display: block;
-    font-size: 0.95em;
-    color: #888;
-    margin-bottom: 0.5em;
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 0.7em;
 }
 
 .experience-item ul {
-    margin: 0.5em 0 0 1em;
+    margin: 0.5em 0 0 1.25em;
     padding: 0;
     list-style: disc inside;
+    line-height: 1.5;
+    color: #ccc;
 }
 
 .experience-item li {
-    margin-bottom: 0.3em;
+    margin-bottom: 0.4em;
 }
-.experience-item:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 6px 16px #0005;
-    background: #212936;
+
+.company-link-title {
+    display: inline-block;
+    font-size: 1.65em;
+    color: #00bcd4;
+    margin-bottom: 0.5em;
+    text-decoration: none;
+    font-weight: bold;
 }
+
+.company-link-title:hover {
+    text-decoration: underline;
+}
+
+
 
 /* Container layout (if needed) */
 #education-container,
