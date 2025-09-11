@@ -124,6 +124,14 @@
           "name": "Bitbucket",
           "url": "https://bitbucket.org/",
           "img": "https://img.shields.io/badge/Bitbucket-0052CC?style=for-the-badge&logo=bitbucket&logoColor=white"
+        },{
+          "name": "Gitlab",
+          "url": "https://gitlab.com/",
+          "img": "https://img.shields.io/badge/GitLab-FCA121?style=for-the-badge&logo=gitlab&logoColor=white"
+        },{
+          "name": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/",
+          "img": "https://img.shields.io/badge/Visual_Studio_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white"
         },
         {
           "name": "Bootstrap",
