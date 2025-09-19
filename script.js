@@ -311,7 +311,20 @@ document.getElementById('download-resume').addEventListener('click', async funct
             y += lineHeight;
 
             exp.details.forEach(detail => {
-                y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
+                // Check for links in experience details
+                const linkMatch = detail.match(/<a[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
+                if (linkMatch) {
+                    const beforeLink = detail.split(linkMatch[0])[0].replace(/<[^>]*>?/gm, '');
+                    if (beforeLink.trim()) {
+                        y = addWrappedText(doc, beforeLink.trim(), margin + 8, y, contentWidth - 8, lineHeight);
+                    }
+                    doc.setTextColor(33, 150, 243);
+                    doc.textWithLink(linkMatch[2], margin + 8, y, { url: linkMatch[1] });
+                    doc.setTextColor(0,0,0);
+                    y += lineHeight;
+                } else {
+                    y = addWrappedText(doc, `- ${detail}`, margin + 8, y, contentWidth - 8, lineHeight);
+                }
             });
             y += 2;
         });
