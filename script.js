@@ -17,6 +17,9 @@ function timeBetweenDates(startDate, endDate) {
     const days = Math.floor(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
     const years = Math.floor(days / 365);
     const months = Math.floor((days % 365) / 30);
+    if(months == 0){
+        return `${years} years`;
+    }
     return `${years} years, ${months} months`;
 }
 
