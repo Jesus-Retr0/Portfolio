@@ -21,5 +21,9 @@
     {
         "title": "Discord API Chatbot",
         "description": "A chatbot built using the Discord API. Automates server tasks, responds to user commands, and can be extended with custom features for your Discord community."
+    },
+    {
+        "title": "Node Talk",
+        "description": "Node Talk is a Python-based client/server application designed for real-time communication between two users. It allows users to exchange messages."    
     }
 ]
