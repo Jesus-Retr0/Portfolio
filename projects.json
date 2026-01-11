@@ -25,5 +25,9 @@
     {
         "title": "Node Talk",
         "description": "Node Talk is a Python-based client/server application designed for real-time communication between two users. It allows users to exchange messages."    
+    },
+    {
+        "title": "Twitch Chat Overlay",
+        "description": "A customizable Twitch chat overlay built with HTML, CSS, and JavaScript. Easily integrate it into your streaming setup to display chat messages on your stream."
     }
 ]
