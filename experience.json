@@ -30,6 +30,24 @@
           ]
         }
       ]
+    },
+    {
+      "company": "Departamento de Hacienda",
+      "companyUrl":"https://hacienda.pr.gov/",
+      "Period": "Jan 2026 – Present",
+      "startDate": "2026-01-23",
+      "endDate": "Present",
+      "data": [
+        {
+          "title": "Information Technology",
+          "period": "Jan 2026 – Present",
+          "startDate": "2026-01-23",
+          "endDate": "Present",
+          "details": [
+            "Working as a Part-Time IT Intern"
+          ]
+        }
+      ]
     }
   ],
 
