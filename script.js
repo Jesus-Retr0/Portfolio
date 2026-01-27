@@ -29,10 +29,11 @@ function renderExperience(experienceData) {
     if (!container) return;
     container.innerHTML = '';
 
-    experienceData.forEach(companyBlock => {
+    experienceData.forEach((companyBlock, index) => {
         // Create a container div for the company block
         const companyContainer = document.createElement('div');
-        companyContainer.className = 'company-container';
+        companyContainer.className = 'company-container fade-in';
+        companyContainer.style.animationDelay = `${index * 0.1}s`;
 
         // Company link as the title (small and styled)
         const companyUrl = companyBlock.companyUrl || '#';
@@ -84,9 +85,10 @@ function renderProjects(projects) {
     const container = document.getElementById('projects-container');
     if (!container) return;
     container.innerHTML = '';
-    projects.forEach(proj => {
+    projects.forEach((proj, index) => {
         const article = document.createElement('article');
-        article.className = 'project-item';
+        article.className = 'project-item fade-in';
+        article.style.animationDelay = `${index * 0.1}s`;
         article.innerHTML = `
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
@@ -106,10 +108,13 @@ function renderEducationCerts(data) {
     certificationsContainer.innerHTML = '';
     
     data.forEach(item => {
+        let eduIndex = 0;
         if (item.Education) {
             item.Education.forEach(edu => {
                 const div = document.createElement('div');
-                div.className = 'education-item';
+                div.className = 'education-item fade-in';
+                div.style.animationDelay = `${eduIndex * 0.1}s`;
+                eduIndex++;
                 div.innerHTML = `
                     <h3>${edu.name}</h3>
                     <span>${edu.year} | ${timeBetweenDates(edu.startDate, edu.endDate)}</span>
@@ -119,10 +124,13 @@ function renderEducationCerts(data) {
             }
         );
         }
+        let certIndex = 0;
         if (item.Certifications) {
             item.Certifications.forEach(cert => {
                 const div = document.createElement('div');
-                div.className = 'certification-item';
+                div.className = 'certification-item fade-in';
+                div.style.animationDelay = `${certIndex * 0.1}s`;
+                certIndex++;
                 div.innerHTML = `
                     <h3>${cert.name}</h3>
                     <span>${cert.year}</span>
@@ -141,10 +149,11 @@ function renderSkills(skillsData) {
     if (!container) return;
     container.innerHTML = '';
 
-    skillsData.forEach(skillCategory => {
+    skillsData.forEach((skillCategory, index) => {
         for (const category in skillCategory) {
             const section = document.createElement('div');
-            section.className = 'skill-category';
+            section.className = 'skill-category fade-in';
+            section.style.animationDelay = `${index * 0.1}s`;
             const title = document.createElement('h3');
             title.textContent = category;
             section.appendChild(title);
