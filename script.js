@@ -43,12 +43,25 @@ function renderExperience(experienceData) {
 
         // Company link as the title (small and styled)
         const companyUrl = companyBlock.companyUrl || '#';
+        const faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain=${new URL(companyUrl).hostname}`;
+        
+        const companyLinkContainer = document.createElement('div');
+        companyLinkContainer.className = 'company-link-container';
+        
+        const faviconImg = document.createElement('img');
+        faviconImg.src = faviconUrl;
+        faviconImg.alt = `${companyBlock.company} logo`;
+        faviconImg.className = 'company-favicon';
+        companyLinkContainer.appendChild(faviconImg);
+        
         const companyLink = document.createElement('a');
         companyLink.href = companyUrl;
         companyLink.target = '_blank';
         companyLink.textContent = companyBlock.company;
         companyLink.className = 'company-link-title';
-        companyContainer.appendChild(companyLink);
+        companyLinkContainer.appendChild(companyLink);
+        
+        companyContainer.appendChild(companyLinkContainer);
 
         //Add period and timeBetweenDates next to company name
         const periodSpan = document.createElement('span');

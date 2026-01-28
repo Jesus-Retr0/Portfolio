@@ -351,6 +351,18 @@ main hr {
     transform: translateY(-5px) scale(1.02);
 }
 
+.company-link-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.company-favicon {
+    display: inline-block;
+    flex-shrink: 0;
+    border-radius: 3px;
+}
+
 .experience-item h3 {
     margin: 0 0 0.2em 0;
     color: #00bcd4;
