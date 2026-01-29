@@ -26,6 +26,9 @@ function timeBetweenDates(startDate, endDate) {
     if(months == 0){
         return `${years} years`;
     }
+    if(years == 1){
+        return `${years} year, ${months} months`;
+    }
     return `${years} years, ${months} months`;
 }
 
