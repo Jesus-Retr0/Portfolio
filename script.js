@@ -1,5 +1,28 @@
 console.log('HI!!!! So you know how to check console logs! :)');
 
+// Scroll-triggered animation observer
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            scrollObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+function observeScrollElements() {
+    document.querySelectorAll('.company-container, .project-item, .education-item, .certification-item, .skill-category, article').forEach(el => {
+        if (!el.classList.contains('fade-in')) {
+            scrollObserver.observe(el);
+        }
+    });
+}
+
 function timeBetweenDates(startDate, endDate) {
     const start = new Date(startDate);
     if (endDate === 'Present') {
@@ -41,8 +64,8 @@ function renderExperience(experienceData) {
     experienceData.forEach((companyBlock, index) => {
         // Create a container div for the company block
         const companyContainer = document.createElement('div');
-        companyContainer.className = 'company-container fade-in';
-        companyContainer.style.animationDelay = `${index * 0.1}s`;
+        companyContainer.className = 'company-container';
+        companyContainer.style.opacity = '0';
 
         // Company link as the title (small and styled)
         const companyUrl = companyBlock.companyUrl || '#';
@@ -97,6 +120,7 @@ function renderExperience(experienceData) {
         companyContainer.appendChild(jobsContainer);
         container.appendChild(companyContainer);
     });
+    observeScrollElements();
 }
 
 
@@ -109,8 +133,8 @@ function renderProjects(projects) {
     container.innerHTML = '';
     projects.forEach((proj, index) => {
         const article = document.createElement('article');
-        article.className = 'project-item fade-in';
-        article.style.animationDelay = `${index * 0.1}s`;
+        article.className = 'project-item';
+        article.style.opacity = '0';
         article.innerHTML = `
             <h3>${proj.title}</h3>
             <p>${proj.description}</p>
@@ -118,6 +142,7 @@ function renderProjects(projects) {
         `;
         container.appendChild(article);
     });
+    observeScrollElements();
 }
 
 // Render Education and Certifications Section
@@ -134,8 +159,8 @@ function renderEducationCerts(data) {
         if (item.Education) {
             item.Education.forEach(edu => {
                 const div = document.createElement('div');
-                div.className = 'education-item fade-in';
-                div.style.animationDelay = `${eduIndex * 0.1}s`;
+                div.className = 'education-item';
+                div.style.opacity = '0';
                 eduIndex++;
                 div.innerHTML = `
                     <h3>${edu.name}</h3>
@@ -150,8 +175,8 @@ function renderEducationCerts(data) {
         if (item.Certifications) {
             item.Certifications.forEach(cert => {
                 const div = document.createElement('div');
-                div.className = 'certification-item fade-in';
-                div.style.animationDelay = `${certIndex * 0.1}s`;
+                div.className = 'certification-item';
+                div.style.opacity = '0';
                 certIndex++;
                 div.innerHTML = `
                     <h3>${cert.name}</h3>
@@ -163,6 +188,7 @@ function renderEducationCerts(data) {
         );
         }
     });
+    observeScrollElements();
 }
 
 function renderSkills(skillsData) {
@@ -174,8 +200,8 @@ function renderSkills(skillsData) {
     skillsData.forEach((skillCategory, index) => {
         for (const category in skillCategory) {
             const section = document.createElement('div');
-            section.className = 'skill-category fade-in';
-            section.style.animationDelay = `${index * 0.1}s`;
+            section.className = 'skill-category';
+            section.style.opacity = '0';
             const title = document.createElement('h3');
             title.textContent = category;
             section.appendChild(title);
@@ -196,6 +222,7 @@ function renderSkills(skillsData) {
             container.appendChild(section);
         }
     });
+    observeScrollElements();
 }
 
 //Get year from date
