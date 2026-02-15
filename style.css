@@ -405,6 +405,12 @@ main hr {
     font-weight: bold;
 }
 
+@media (max-width: 600px) {
+    .company-link-title {
+        font-size: 1.25em;
+    }
+}
+
 .company-link-title:hover {
     text-decoration: underline;
 }
