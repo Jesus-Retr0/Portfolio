@@ -97,6 +97,15 @@ function renderExperience(experienceData) {
         periodSpan.textContent = `${periodText}${timeText}`;
         companyContainer.appendChild(periodSpan);
 
+        // Add embed button if embeds exist
+        if (companyBlock.embeds && companyBlock.embeds.length > 0) {
+            const embedButton = document.createElement('button');
+            embedButton.className = 'embed-button';
+            embedButton.textContent = 'View Media';
+            embedButton.addEventListener('click', () => openEmbedModal(companyBlock.embeds, companyBlock.company));
+            companyContainer.appendChild(embedButton);
+        }
+
 
         // Container for all job experiences within the company
         const jobsContainer = document.createElement('div');
@@ -471,4 +480,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footer) {
         footer.textContent = `© ${getCopyRightYear()} Jesus De La Paz. All rights reserved.`;
     }
+
+    // Modal event listeners
+    const modal = document.getElementById('embed-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    closeModalBtn.addEventListener('click', closeEmbedModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeEmbedModal();
+        }
+    });
 });
+
+// Function to open embed modal
+function openEmbedModal(embeds, companyName) {
+    const modal = document.getElementById('embed-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+    modalTitle.textContent = `${companyName} Media`;
+    modalContent.innerHTML = '';
+
+    embeds.forEach(embed => {
+        const embedDiv = document.createElement('div');
+        embedDiv.className = 'embed-item';
+        embedDiv.innerHTML = `
+            <h3>${embed.title}</h3>
+            ${embed.embed}
+        `;
+        modalContent.appendChild(embedDiv);
+    });
+
+    modal.classList.add('active');
+}
+
+// Function to close embed modal
+function closeEmbedModal() {
+    const modal = document.getElementById('embed-modal');
+    const modalContent = document.getElementById('modal-content');
+    
+    // Stop all videos by clearing content
+    modalContent.innerHTML = '';
+    
+    modal.classList.remove('active');
+}

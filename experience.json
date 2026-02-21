@@ -6,6 +6,7 @@
       "Period": "Sep 2024 – Jan 2026",
       "startDate": "2024-09-10",
       "endDate": "2026-01-22",
+
       "data": [
         {
           "title": "Developer Internship",
@@ -37,6 +38,12 @@
       "Period": "Jan 2026 – Present",
       "startDate": "2026-01-23",
       "endDate": "Present",
+      "embeds": [
+        {
+          "title": "¡Así comenzó la segunda edición del Internado Manuel Díaz Saldaña!",
+          "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zDSqmsVy04A?si=v8YbKWQyndk-5HTW\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+        }
+      ],
       "data": [
         {
           "title": "Information Technology (ATI) Intern",
